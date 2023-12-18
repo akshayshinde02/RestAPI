@@ -12,10 +12,20 @@ public class CorsConfig {
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
-        config.addAllowedOrigin("*"); // Allow all origins
+        config.addAllowedOrigin("http://localhost:3000"); // Allow all origins
         config.addAllowedMethod("*"); // Allow all HTTP methods
         config.addAllowedHeader("*"); // Allow all headers
+        config.addAllowedMethod("OPTIONS"); // Allow OPTIONS requests
+        
+        config.addExposedHeader("Authorization");
+        config.addExposedHeader("Content-Type");
+        config.addExposedHeader("Access-Control-Allow-Origin");
+        
         source.registerCorsConfiguration("/**", config);
+        
         return new CorsFilter(source);
     }
 }
+
+
+
